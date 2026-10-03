@@ -1,10 +1,10 @@
 # Cloud-Based ML Prediction API
 
-A containerized machine learning prediction API built using **Python, Scikit-learn, FastAPI, Docker, and GitHub Actions**.
+A containerized machine learning prediction API built using **Python, Scikit-learn, FastAPI, Docker, GitHub Actions, and Render**.
 
 The project demonstrates a simple **client-server architecture** in which a client sends input data to a REST API, the API uses a trained machine learning model to generate a prediction, and the result is returned as JSON.
 
-The application is designed to be deployed on a cloud platform and accessed through a public API endpoint.
+The application is deployed on **Render Cloud** and accessed through a public HTTPS API endpoint.
 
 ---
 
@@ -26,7 +26,7 @@ The API returns:
 - Predicted flower species
 - Prediction confidence
 
-The application is packaged inside a Docker container and tested automatically using GitHub Actions.
+The application is packaged inside a Docker container, tested automatically using GitHub Actions, and deployed to **Render Cloud** as a Docker-based Web Service.
 
 ---
 
@@ -41,7 +41,7 @@ The objective of this project is to demonstrate how a trained ML model can be:
 3. Exposed through a REST API
 4. Containerized using Docker
 5. Tested automatically using CI
-6. Deployed to a cloud platform
+6. Deployed to a cloud platform using Render
 
 ---
 
@@ -50,7 +50,19 @@ The objective of this project is to demonstrate how a trained ML model can be:
 ```text
                     Client
                       |
-                      | HTTP Request
+                      | HTTPS Request
+                      v
+              +---------------+
+              | Render Cloud  |
+              |   Platform    |
+              +-------+-------+
+                      |
+                      v
+              +---------------+
+              | Docker        |
+              | Container     |
+              +-------+-------+
+                      |
                       v
               +---------------+
               |   FastAPI     |
@@ -69,16 +81,10 @@ The objective of this project is to demonstrate how a trained ML model can be:
               +---------------+
               | JSON Response |
               +---------------+
-
-        Application runs inside a Docker container
-                         |
-                         v
-                  Cloud Platform
 ```
 
 ### Development and CI/CD Flow
-
-```text
+```
 Developer
     |
     v
@@ -94,9 +100,14 @@ GitHub Actions
     +----> Build Docker Image
     |
     v
-Cloud Deployment
+Render Cloud
+    |
+    v
+Docker Container
+    |
+    v
+Public HTTPS API
 ```
-
 ---
 
 ## 4. Technologies Used
@@ -112,7 +123,7 @@ Cloud Deployment
 | Pytest | Automated testing |
 | GitHub Actions | Continuous Integration |
 | GitHub | Source code management |
-| Cloud Platform | Deployment |
+| Render | Cloud deployment and hosting |
 
 ---
 
@@ -359,7 +370,13 @@ The `main` branch is protected so that the required CI check must pass before ch
 
 ## 11. Cloud Deployment
 
-The application is containerized and can be deployed to a cloud platform using the existing Dockerfile.
+The application is containerized using Docker and deployed to **Render Cloud** as a Web Service.
+
+### Cloud Platform
+
+## Render
+
+Render provides the cloud environment in which the Dockerized FastAPI application runs and is made accessible through a public HTTPS endpoint.
 
 ### Deployment Architecture
 
@@ -368,7 +385,7 @@ Client
   |
   | HTTPS Request
   v
-Cloud Platform
+Render Cloud Platform
   |
   v
 Docker Container
@@ -388,10 +405,10 @@ JSON Prediction
 **Cloud Platform:** Render
 
 **Live URL:**  
-_To be added after deployment_
+[https://iris-ml-api-rl5l.onrender.com/?utm_source=chatgpt.com](https://iris-ml-api-rl5l.onrender.com)
 
 **Swagger API:**  
-_To be added after deployment_
+[https://iris-ml-api-rl5l.onrender.com/docs](https://iris-ml-api-rl5l.onrender.com/docs)
 
 ---
 
